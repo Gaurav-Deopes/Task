@@ -1,5 +1,0 @@
-20-12-2023
-
-apache instance + mariadb + template + loadbalancer + autoscaling
-
-once you hit loadbalancer's DNS you will get student application config
