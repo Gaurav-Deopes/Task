@@ -1,0 +1,18 @@
+21-12-2023
+
+Created a database of mariaDB in RDS service and attached a instance which has student app already configured in it.
+
+learned about whan an endpoint is in rds
+
+in your instance hit 
+
+>> mysql -h givenendpointofrdsinstance -u admin -p12345678
+
+once into the database
+
+? == used for learning more commands
+created a database;
+use database;
+created a table in database;
+
+succesfully attached a rds mariadb to ec2 instance
