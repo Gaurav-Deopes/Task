@@ -1,4 +1,4 @@
-//Steps to create Elastic System File.
+//Steps to create and mount Elastic System File.
 
 Step 1:
 //Go to the AWS Management Console.
