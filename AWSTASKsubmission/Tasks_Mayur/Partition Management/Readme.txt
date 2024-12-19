@@ -20,4 +20,43 @@ Step 3:
 //Click Actions > Attach Volume.
 //Choose your EC2 instance from the list and attach the volume.
 
+Step 4:
+//Get access to your Instance using SSH.
+//List the available disks using command lsblk.
+
+#lsblk
+
+//you will see newly added volume.
+//Check if that newly added volume is already formatted or not.
+
+#sudo file -s /dev/xvdc
+
+//If it says "data" the volume is unformatted.
+//Format the volume using below command.
+
+#sudo mkfs -t ext4 /dev/xvdc
+
+Step 5:
+//Now we have to mount that volume.
+//Create a mount point.
+
+#sudo mkdir /mnt/newvolume
+
+//mount point is created successfully.
+//Now mount the volume to this mount point.
+
+#sudo mount /dev/xvdf /mnt/newvolume
+
+//Now we mounted the volume successfully.
+//To verify it use following command.
+
+#df -h
+
+//It will display the volumes.
+//We successfully mounted the volume ..!!
+
+//But this mounting is only the temporary mounting.
+//When we reboot the system it will automatically get unmounted.
+//So if we want mount it permanently then we have to mount it permanently.
+
 
