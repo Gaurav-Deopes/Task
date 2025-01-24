@@ -1,0 +1,60 @@
+CODE TO CREATE SNAPSHOT OF RUNNING INSTANCE IN SIGAPORE REGION 
+
+
+
+import boto3
+
+def lambda_handler(event, context):
+    ec2_client = boto3.client('ec2', region_name='ap-southeast-1')
+    
+    # Get all running instances in the region
+    running_instances = ec2_client.describe_instances(
+        Filters=[{'Name': 'instance-state-name', 'Values': ['running']}]
+    )
+    
+    for reservation in running_instances['Reservations']:
+        for instance in reservation['Instances']:
+            instance_id = instance['InstanceId']
+            snapshot_description = f"Snapshot for instance {instance_id}"
+            
+            # Create snapshot
+            snapshot_response = ec2_client.create_snapshot(
+                VolumeId=instance['BlockDeviceMappings'][0]['Ebs']['VolumeId'],
+                Description=snapshot_description
+            )
+            
+            snapshot_id = snapshot_response['SnapshotId']
+            print(f"Snapshot created for instance {instance_id} with ID: {snapshot_id}")
+    
+    return {
+        'statusCode': 200,
+        'body': "Snapshots created for running instances in the Singapore region"
+    }
+
+
+
+CODE TO DELETE SNAPSHOT  IN SIGAPORE REGION 
+
+import boto3
+
+def lambda_handler(event, context):
+    ec2_client = boto3.client('ec2', region_name='ap-southeast-1')
+    
+    # Get list of snapshots in the Singapore region
+    snapshots = ec2_client.describe_snapshots(
+        Filters=[{'Name': 'owner-id', 'Values': ['YOUR_ACCOUNT_ID']}]
+    )
+    
+    for snapshot in snapshots['Snapshots']:
+        snapshot_id = snapshot['SnapshotId']
+        
+        # Delete snapshot
+        ec2_client.delete_snapshot(SnapshotId=snapshot_id)
+        print(f"Snapshot {snapshot_id} deleted.")
+    
+    return {
+        'statusCode': 200,
+        'body': "Snapshots deleted in the Singapore region"
+    }
+
+***NOTE:replace 'YOUR_ACCOUNT_ID' with your actual AWS account ID.
