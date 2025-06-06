@@ -1,1 +1,41 @@
+How to create linux and windows server in AWS console.
+#step of Linux server#
+Go to the EC2 serive--click on Launch instances--then give the server name and select Linux OS Image
+scroll down & click on create new pair--Put key pair name then select private key file format(.pem)--click on create key pair
+scroll down antique the allow SSH traffice form option then click Launch Instance.
+
+After click on the launch instance linux seriver is ready but we cant access due to Firewall is available.
+so we can enable SSH port for access the licux seriver find below step.
+1)click on Instance ID --- scroll down click on Security and select security Group
+2) click on Edit inbound rules--- click on Add rule.
+3)select SSH in Type option (auto select 22 Port for SSH service)
+4)select Anywhere- IPv4 then hit on the button Save rules
+
+Now your Linux server is ready Use.
+-----------------------------------------------------------------------------------------------------------
+# Step of Windows Seriver#
+Go to the EC2 serive--click on Launch instances--then give the server name and select Windows OS Image
+scroll down & click on create new pair--Put key pair name then select private key file format(.pem)--click on create key pair
+scroll down antique the allow RDP traffice form option then click Launch Instance.
+
+After click on the launch instance Windows seriver is ready but we cant access due to Firewall is available.
+so we can enable RDP serive for access the windows server find below step.
+1)click on Instance ID --- scroll down click on Security and select security Group
+2) click on Edit inbound rules--- click on Add rule.
+3)select RDP in Type option (auto select 3389 Port for RDP service)
+4)select Anywhere- IPv4 then hit on the button Save rules
+In this Case RDP serive create the password key
+click on the instance id and connect-- select RDP Client-- Get password then upload private key file and select the file
+click on Decrypt password (I%1XCxUqOs5S.0?pukbf9=9iOrZIEi2x)--Download remote desktop file
+
+Now your Windows server is ready Use go to download option and click on windows server.rdp
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
